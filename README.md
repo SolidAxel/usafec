@@ -1,4 +1,4 @@
-## `USA FEC Individual Donations from 1980 to 2020`
+## USA FEC Individual Donations from 1980 to 2020
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
