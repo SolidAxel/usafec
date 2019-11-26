@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './App.scss'; /* optional for styling like the :hover pseudo-class */
 import USAMap from "react-usa-map";
 import ComponentSlider from "@kapost/react-component-slider";
-import { XYPlot, ContinuousColorLegend } from 'react-vis';
-// const renderLeftArrow = () => <i className="fa fa-caret-left" />;
-// const renderRightArrow = () => <i className="fa fa-caret-right" />;
+import { ContinuousColorLegend } from 'react-vis';
+
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center",
