@@ -42,9 +42,9 @@ class App extends Component {
         <div class="Legend" align = "center">
             <ContinuousColorLegend
               width={300}
-              startTitle="100"
-              midTitle="150"
-              endTitle="200"
+              startTitle="%DEM"
+              midTitle="0"
+              endTitle="%REP"
               startColor="blue"
               endColor="red"
               midColor="white"
