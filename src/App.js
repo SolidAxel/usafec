@@ -147,6 +147,21 @@ const marks = {
   },
 };
 class App extends Component {
+  state = {
+    show: false,
+    e: null
+  }
+
+  showModal = stated => {
+    this.setState({ show: true ,
+      e : stated
+    });
+    
+  }
+
+  hideModal = () => {
+    this.setState({ show: false });
+  }
   sliderLog(value) {
     console.log(value); //eslint-disable-line
   }
@@ -155,16 +170,25 @@ class App extends Component {
     alert(event.target.dataset.name);
   };
   /* optional customization of filling per state and calling custom callbacks per state */
+
   statesCustomConfig = () => {
     return {
-    };
+      "NY": {
+        fill: "blue",
+        clickHandler: (e)=> this.showModal(e.target.dataset.name)
+      }
+    }
   };
+
   render() {
     return (
       <div className="mapContainer">
         <div className="App">
           <h1>USA FEC Individual Donations from 1980 to 2020</h1>
           <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
+          <Modal show={this.state.show} handleClose={this.hideModal}>
+          {this.state.e}
+          </Modal>
         </div>
         <div className="Legend" style={legStyle}>
           <ContinuousColorLegend
@@ -184,5 +208,25 @@ class App extends Component {
     );
   }
 }
+const Modal = ({ handleClose, show, children }) => {
+  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
+  return (
+    <div className={showHideClassName}>
+      <section className='modal-main'>
+        {children}
+        <div> </div>
+        <button
+          onClick={handleClose}
+        >
+          Close
+        </button>
+      </section>
+    </div>
+  );
+};
+
+
+const container = document.createElement('div');
+document.body.appendChild(container);
 export default App;
