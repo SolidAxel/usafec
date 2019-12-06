@@ -10,4 +10,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         * npm install react-usa-map --save
 ## Running:
 
-    To run the project simply enter *npm start* in your terminal within the project directory.
+    To run the project simply enter **npm start** in your terminal within the project directory.
