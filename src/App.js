@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss'; /* optional for styling like the :hover pseudo-class */
 import USAMap from "react-usa-map";
-import ComponentSlider from "@kapost/react-component-slider";
 import { ContinuousColorLegend } from 'react-vis';
 
 const styles = {
@@ -48,31 +47,6 @@ class App extends Component {
               endColor="red"
               midColor="white"
             />
-        </div>
-        <div className="Bar" style={styles}>
-          <ComponentSlider onClick={this.slideHandler}>
-            <div className="menu-item" id="1980" onClick={this.printYear}>1980</div>
-            <div className="menu-item" id="1982" onClick={this.printYear}>1982</div>
-            <div className="menu-item" id="1984" onClick={this.printYear}>1984</div>
-            <div className="menu-item" id="1986" onClick={this.printYear}>1986</div>
-            <div className="menu-item" id="1988" onClick={this.printYear}>1988</div>
-            <div className="menu-item" id="1990" onClick={this.printYear}>1990</div>
-            <div className="menu-item" id="1992" onClick={this.printYear}>1992</div>
-            <div className="menu-item" id="1994" onClick={this.printYear}>1994</div>
-            <div className="menu-item" id="1996" onClick={this.printYear}>1996</div>
-            <div className="menu-item" id="1998" onClick={this.printYear}>1998</div>
-            <div className="menu-item" id="2000" onClick={this.printYear}>2000</div>
-            <div className="menu-item" id="2002" onClick={this.printYear}>2002</div>
-            <div className="menu-item" id="2004" onClick={this.printYear}>2004</div>
-            <div className="menu-item" id="2006" onClick={this.printYear}>2006</div>
-            <div className="menu-item" id="2008" onClick={this.printYear}>2008</div>
-            <div className="menu-item" id="2010" onClick={this.printYear}>2010</div>
-            <div className="menu-item" id="2012" onClick={this.printYear}>2012</div>
-            <div className="menu-item" id="2014" onClick={this.printYear}>2014</div>
-            <div className="menu-item" id="2016" onClick={this.printYear}>2016</div>
-            <div className="menu-item" id="2018" onClick={this.printYear}>2018</div>
-            <div className="menu-item" id="2020" onClick={this.printYear}>2020</div>
-          </ComponentSlider>
         </div>
       </div>
     );
