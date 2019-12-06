@@ -154,11 +154,12 @@ class App extends Component {
   }
 
   showModal = (stated, input) => {
-    this.setState({ show: true ,
-      e : stated,
-      data : input
+    this.setState({
+      show: true,
+      e: stated,
+      data: input
     });
-    
+
   }
 
   hideModal = () => {
@@ -177,11 +178,10 @@ class App extends Component {
     return {
       "NY": {
         fill: "blue",
-        clickHandler: (e)=> this.showModal(e.target.dataset.name, "[1 , 2 , 3 , 4 , 5]")
+        clickHandler: (e) => this.showModal(e.target.dataset.name, "[1 , 2 , 3 , 4 , 5]")
       }
     }
   };
-
   render() {
     return (
       <div className="mapContainer">
@@ -189,10 +189,10 @@ class App extends Component {
           <h1>USA FEC Individual Donations from 1980 to 2020</h1>
           <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
           <Modal show={this.state.show} handleClose={this.hideModal}>
-          {this.state.e}
-          <div></div>
-          {this.state.data}
-          <div></div>
+            {this.state.e}
+            <div></div>
+            {this.state.data}
+            <div></div>
           </Modal>
         </div>
         <div className="Legend" style={legStyle}>
@@ -220,7 +220,7 @@ const Modal = ({ handleClose, show, children }) => {
     <div className={showHideClassName} >
       <section className='modal-main'>
         {children}
-        
+
         <button
           onClick={handleClose}
         >
