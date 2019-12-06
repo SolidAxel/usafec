@@ -5,10 +5,6 @@ import { ContinuousColorLegend } from 'react-vis';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-function log(value) {
-  console.log(value); //eslint-disable-line
-}
-
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center",
@@ -21,6 +17,7 @@ const legStyle = {
   paddingTop: "15px",
   paddingLeft: "550px"
 };
+
 const marks = {
   1980: {
     style: {
@@ -150,21 +147,18 @@ const marks = {
   },
 };
 class App extends Component {
+  sliderLog(value) {
+    console.log(value); //eslint-disable-line
+  }
   /* mandatory */
   mapHandler = (event) => {
     alert(event.target.dataset.name);
   };
-  slideHandler = (event) => {
-    alert(console.log("Year", event.target.dataset));
-  }
   /* optional customization of filling per state and calling custom callbacks per state */
   statesCustomConfig = () => {
     return {
     };
   };
-  printYear = (e) => {
-    console.log(e.target.id);
-  }
   render() {
     return (
       <div className="mapContainer">
@@ -184,7 +178,7 @@ class App extends Component {
           />
         </div>
         <div style={styles}>
-          <Slider step={2} min={1980} max={2020} onAfterChange={log} marks={marks} included={false} />
+          <Slider step={2} min={1980} max={2020} onAfterChange={this.sliderLog} marks={marks} included={false} />
         </div>
       </div>
     );
