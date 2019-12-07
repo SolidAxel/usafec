@@ -102,11 +102,6 @@ function getColorbyContribution(stateContribution, max) {
   return (rgb);
 }
 
-//Made for the testing of getColor();
-function randNum() {
-  return Math.random() * 90000;
-}
-
 const repRed = "#FF0000"
 const demBlue = "#0015BC"
 
