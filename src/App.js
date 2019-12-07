@@ -18,6 +18,61 @@ const legStyle = {
   paddingLeft: "550px"
 };
 
+function getColor(demDonations, repDonations){
+  var total = demDonations + repDonations;
+  var rgb = "rgb(255,255,255)"; //Default to white
+  var isRep = false;
+  var percentage = 0;
+
+  //Checks if the states donations are primarily republican or democratic.
+  if(repDonations > demDonations)
+		isRep = true;
+	else if(repDonations < demDonations)
+    isRep = false;
+	else
+    return rgb;  //If they are equal then we should return white
+  
+  //Next thing to do is find the percentages of dem and rep relative to total.
+  //This will tell us how saturated the states color needs to be.
+  if(isRep){
+    percentage = repDonations/total;
+
+    // The higher percentage the more saturated the color should be.
+    // The higher all of the numbers are, the closer to white the result is.
+    if(percentage > .9)
+      rgb = "rgb(255,0,0)"  //Fully Red
+    else if(percentage > .8)
+      rgb = "rgb(255,50,50)"
+    else if(percentage > .7)
+      rgb = "rgb(255,100,100)"
+    else if(percentage > .6)
+      rgb = "rgb(255,150,150)"
+    else
+      rgb = "rgb(255,200,200)"
+    // When the value is at 50% then the color should be white. 
+    // If it's below then it's the other color.
+  }
+  else{
+    percentage = demDonations/total;
+    if(percentage > .9)
+      rgb = "rgb(0,0,255)"  //Fully Blue
+    else if(percentage > .8)
+      rgb = "rgb(50,50,255)"
+    else if(percentage > .7)
+      rgb = "rgb(100,100,255)"
+    else if(percentage > .6)
+      rgb = "rgb(150,150,255)"
+    else
+      rgb = "rgb(200,200,255)"
+  }
+
+  return(rgb);
+}
+
+function randNum(){
+  return Math.random() * 100000;
+}
+
 const marks = {
   1980: {
     style: {
@@ -189,203 +244,203 @@ class App extends Component {
   statesCustomConfig = () => {
     return {
       "NY": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "[1 , 2 , 3 , 4 , 5]")
       },
       "AZ": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Arizona", "[1 , 2 , 3 , 4 , 5]")
       },
       "CA": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "California", "[1 , 2 , 3 , 4 , 5]")
       },
       "NV": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Nevada", "[1 , 2 , 3 , 4 , 5]")
       },
       "AK": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Alaska", "[1 , 2 , 3 , 4 , 5]")
       },
       "HI": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Hawaii", "[1 , 2 , 3 , 4 , 5]")
       },
       "OR": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Oregon", "[1 , 2 , 3 , 4 , 5]")
       },
       "WA": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Washington", "[1 , 2 , 3 , 4 , 5]")
       },
       "ID": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Idaho", "[1 , 2 , 3 , 4 , 5]")
       },
       "MT": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Montana", "[1 , 2 , 3 , 4 , 5]")
       },
       "UT": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Utah", "[1 , 2 , 3 , 4 , 5]")
       },
       "WY": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Wyoming", "[1 , 2 , 3 , 4 , 5]")
       },
       "CO": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Colorado", "[1 , 2 , 3 , 4 , 5]")
       },
       "NM": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "New Mexico", "[1 , 2 , 3 , 4 , 5]")
       },
       "TX": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Texas", "[1 , 2 , 3 , 4 , 5]")
       },
       "OK": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Oklahoma", "[1 , 2 , 3 , 4 , 5]")
       },
       "KS": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Kansas", "[1 , 2 , 3 , 4 , 5]")
       },
       "NE": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Nebraska", "[1 , 2 , 3 , 4 , 5]")
       },
       "SD": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "South Dakota", "[1 , 2 , 3 , 4 , 5]")
       },
       "ND": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "North Dakota", "[1 , 2 , 3 , 4 , 5]")
       },
       "WI": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Wisconsin", "[1 , 2 , 3 , 4 , 5]")
       },
       "IA": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Iowa", "[1 , 2 , 3 , 4 , 5]")
       },
       "MN": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Minnesota", "[1 , 2 , 3 , 4 , 5]")
       },
       "IL": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Illinois", "[1 , 2 , 3 , 4 , 5]")
       },
       "MO": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Missouri", "[1 , 2 , 3 , 4 , 5]")
       },
       "AR": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Arkansas", "[1 , 2 , 3 , 4 , 5]")
       },
       "LA": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Louisiana", "[1 , 2 , 3 , 4 , 5]")
       },
       "MS": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Mississippi", "[1 , 2 , 3 , 4 , 5]")
       },
       "AL": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Alabama", "[1 , 2 , 3 , 4 , 5]")
       },
       "TN": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Tennessee", "[1 , 2 , 3 , 4 , 5]")
       },
       "KY": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Kentucky", "[1 , 2 , 3 , 4 , 5]")
       },
       "IN": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Indiana", "[1 , 2 , 3 , 4 , 5]")
       },
       "OH": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Ohio", "[1 , 2 , 3 , 4 , 5]")
       },
       "MI": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Michigan", "[1 , 2 , 3 , 4 , 5]")
       },
       "FL": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Florida", "[1 , 2 , 3 , 4 , 5]")
       },
       "GA": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Georgia", "[1 , 2 , 3 , 4 , 5]")
       },
       "SC": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "South Carolina", "[1 , 2 , 3 , 4 , 5]")
       },
       "NC": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "North Carolina", "[1 , 2 , 3 , 4 , 5]")
       },
       "VA": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Virginia", "[1 , 2 , 3 , 4 , 5]")
       },
       "WV": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "West Virginia", "[1 , 2 , 3 , 4 , 5]")
       },
       "MD": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Maryland", "[1 , 2 , 3 , 4 , 5]")
       },
       "DE": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Delaware", "[1 , 2 , 3 , 4 , 5]")
       },
       "PA": {
-        fill: "rgb(255,0,0)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Pennsylvania", "[1 , 2 , 3 , 4 , 5]")
       },
       "NJ": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "New Jersey", "[1 , 2 , 3 , 4 , 5]")
       },
       "CT": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Connecticut", "[1 , 2 , 3 , 4 , 5]")
       },
       "RI": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Rhode Island", "[1 , 2 , 3 , 4 , 5]")
       },
       "MA": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Massachusetts", "[1 , 2 , 3 , 4 , 5]")
       },
       "VT": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Vermont", "[1 , 2 , 3 , 4 , 5]")
       },
       "NH": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "New Hampshire", "[1 , 2 , 3 , 4 , 5]")
       },
       "ME": {
-        fill: "rgb(0,0,255)",
+        fill: getColor(randNum(),randNum()),
         clickHandler: (e) => this.showModal(e.target.dataset.name, "Maine", "[1 , 2 , 3 , 4 , 5]")
       }
     }
