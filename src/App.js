@@ -105,6 +105,9 @@ function randNum() {
   return Math.random() * 90000;
 }
 
+const repRed = "#FF0000"
+const demBlue = "#0015BC"
+
 const marks = {
   1980: {
     style: {
@@ -713,8 +716,8 @@ class App extends Component {
             startTitle="%DEM"
             midTitle="0"
             endTitle="%REP"
-            startColor="blue"
-            endColor="red"
+            startColor= {demBlue}
+            endColor= {repRed}
             midColor="white"
           />
           <div></div>
