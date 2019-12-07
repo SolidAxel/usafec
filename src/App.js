@@ -242,7 +242,7 @@ class App extends Component {
     e: null,
     state: null,
     data: null,
-    politicalGraph: false
+    politicalGraph: true
   }
 
   showModal = (stated, name, data) => {
@@ -272,6 +272,10 @@ class App extends Component {
   mapHandler = (event) => {
     alert(event.target.dataset.name);
   };
+
+  manageButton = () => {
+    this.setState({politicalGraph: !this.state.politicalGraph})
+  }
 
   /* optional customization of filling per state and calling custom callbacks per state */
   statesCustomConfig = () => {
@@ -692,6 +696,7 @@ class App extends Component {
           <h1>
             USA FEC Individual Donations from <year>{this.state.year}</year>
           </h1>
+          <h2><button onClick = {this.manageButton}>Change Type of Map</button></h2>
           <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
           <Modal show={this.state.show} handleClose={this.hideModal}>
             {this.state.e}
@@ -714,7 +719,7 @@ class App extends Component {
           />
           <div></div>
         </PoliticalBar>
-        <DonationBar>
+        <DonationBar show={this.state.politicalGraph}>
           <ContinuousColorLegend
             width={300}
             startTitle="Lowest"
