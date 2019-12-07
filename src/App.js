@@ -17,7 +17,8 @@ const legStyle = {
   paddingTop: "15px",
   paddingLeft: "550px"
 };
-
+const repRed = "#FF0000"
+const demBlue = "#0015BC"
 const marks = {
   1980: {
     style: {
@@ -177,7 +178,11 @@ class App extends Component {
   statesCustomConfig = () => {
     return {
       "NY": {
-        fill: "blue",
+        fill: demBlue,
+        clickHandler: (e) => this.showModal(e.target.dataset.name, "[1 , 2 , 3 , 4 , 5]")
+      },
+      "FL": {
+        fill: repRed,
         clickHandler: (e) => this.showModal(e.target.dataset.name, "[1 , 2 , 3 , 4 , 5]")
       }
     }
@@ -201,8 +206,8 @@ class App extends Component {
             startTitle="%DEM"
             midTitle="0"
             endTitle="%REP"
-            startColor="blue"
-            endColor="green"
+            startColor= {demBlue}
+            endColor= {repRed}
             midColor="white"
           />
         </div>
