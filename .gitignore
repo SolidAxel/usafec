@@ -17,7 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
-
+.ipynb_checkpoints
 *.csv
 
 npm-debug.log*
