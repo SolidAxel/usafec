@@ -6,12 +6,14 @@ function randNum() {
 
 module.exports = {
     data1980 : {
-        max: 100000,
+        max: 100000,  // Highest donation amount among all of the state total donations.
+        totalDem: 500000, // Value of all Dem donations in a given year
+        totalRep: 500000, // Value of all Rep donations in a given year
         "NY": {
-            RepDonations: 15000,
-            DemDonations: 85000,
-            topProfessions: [],
-            topDonations: []
+            RepDonations: 15000,  // Value of all rep donations in state of NY in 1980
+            DemDonations: 85000,  // Value of all dem donations in state of NY in 1980
+            topProfessions: ["Engineer", "CEO", "Scientist", "Journalist", "Doctor"], // Top 5 professions to donate in a 1980
+            topDonations: [100000,90000,800000,70000,500] // The aboves total amount of donation amounts
         },
         "AZ": {
             RepDonations: randNum(),
@@ -311,6 +313,8 @@ module.exports = {
 
     data1982 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -615,6 +619,8 @@ module.exports = {
 
     data1984 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -919,6 +925,8 @@ module.exports = {
 
     data1986 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -1223,6 +1231,8 @@ module.exports = {
 
     data1988 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -1527,6 +1537,8 @@ module.exports = {
 
     data1990 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -1831,6 +1843,8 @@ module.exports = {
 
     data1992 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -2135,6 +2149,8 @@ module.exports = {
 
     data1994 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -2439,6 +2455,8 @@ module.exports = {
 
     data1996 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -2743,6 +2761,8 @@ module.exports = {
 
     data1998 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -3047,6 +3067,8 @@ module.exports = {
 
     data2000 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -3351,6 +3373,8 @@ module.exports = {
 
     data2002 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -3654,6 +3678,8 @@ module.exports = {
     },
     data2004 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -3958,6 +3984,8 @@ module.exports = {
 
     data2006 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -4262,6 +4290,8 @@ module.exports = {
 
     data2008 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -4566,6 +4596,8 @@ module.exports = {
 
     data2010 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -4870,6 +4902,8 @@ module.exports = {
 
     data2012 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -5173,6 +5207,8 @@ module.exports = {
     },
     data2014 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -5477,6 +5513,8 @@ module.exports = {
 
     data2016 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -5781,6 +5819,8 @@ module.exports = {
 
     data2018 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
@@ -6085,6 +6125,8 @@ module.exports = {
 
     data2020 : {
         max: 100000,
+        maxDem: 500000,
+        maxRep: 500000,
         "NY": {
             RepDonations: randNum(),
             DemDonations: randNum(),
