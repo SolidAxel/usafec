@@ -6,18 +6,19 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './data';
 
-const styles = {
+const sliderBar = {
   fontFamily: "sans-serif",
   textAlign: "center",
   paddingTop: "10px",
   align: "center",
   width: "1000px",
-  paddingLeft: "200px"
+  margin:"0 auto"
 };
 
-const legStyle = {
-  paddingTop: "15px",
-  paddingLeft: "550px"
+const colorBar = {
+  width: "300px", 
+  margin:"0 auto",
+  paddingTop:"20px"
 };
 
 function getColor(demDonations, repDonations) {
@@ -964,7 +965,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="mapContainer">
+      <div className="mapContainer" >
         <div className="App">
           <h1>
             USA FEC Individual Donations from <year>{this.state.year}</year>
@@ -986,7 +987,6 @@ class App extends Component {
         </div>
         <PoliticalBar show={this.state.politicalGraph}>
           <ContinuousColorLegend
-            width={300}
             startTitle="%DEM"
             midTitle="0"
             endTitle="%REP"
@@ -998,7 +998,6 @@ class App extends Component {
         </PoliticalBar>
         <DonationBar show={this.state.politicalGraph}>
           <ContinuousColorLegend
-            width={300}
             startTitle="Lowest"
             endTitle="Highest"
             startColor="rgb(255,255,100)"
@@ -1006,7 +1005,7 @@ class App extends Component {
             midColor="rgb(255,75,0)"
           />
         </DonationBar>
-        <div style={styles}>
+        <div style={sliderBar}>
           <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} />
         </div>
       </div>
@@ -1035,7 +1034,7 @@ const Modal = ({ handleClose, show, children }) => {
 const PoliticalBar = ({ show, children }) => {
   if (show) {
     return (
-      <div className="Legend" style={legStyle}>
+      <div className="Legend" style={colorBar}>
         <section className='political-main'>
           {children}
         </section>
@@ -1049,7 +1048,7 @@ const PoliticalBar = ({ show, children }) => {
 const DonationBar = ({ show, children }) => {
   if (!show) {
     return (
-      <div className="Legend" style={legStyle}>
+      <div className="Legend" style={colorBar}>
         <section className='political-main'>
           {children}
         </section>
