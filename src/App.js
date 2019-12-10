@@ -1235,7 +1235,7 @@ class App extends Component {
           />
         </DonationBar>
         <div className="breakdownContainer" style={breakdownContainer}>
-          <RadialChart data={this.getPieData()} width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82} />
+          <RadialChart data={this.getPieData()} width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82} animation={true}/>
           <div style={top15container}>
             <Top15Donations data={this.state.dataset}></Top15Donations>
           </div>
