@@ -352,6 +352,9 @@ class App extends Component {
   statesCustomConfig = () => {
     if (this.state.politicalGraph) {
       return {
+        "DC2": {
+          fill: "black"
+        },
         "NY": {
           fill: getColor(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
           clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
@@ -706,6 +709,9 @@ class App extends Component {
     }
     else {
       return {
+        "DC2": {
+          fill: "black"
+        },
         "NY": {
           fill: getColorbyContribution(Math.max(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations), this.state.dataset.max),
           clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
@@ -1055,7 +1061,7 @@ class App extends Component {
             this.getPercentage(this.state.dataset.ME.DemDonations, this.state.dataset.ME.RepDonations),
             this.getTotal(this.state.dataset.ME.DemDonations, this.state.dataset.ME.RepDonations),
             this.comparisonToUS(this.state.dataset.ME.DemDonations, this.state.dataset.ME.RepDonations)),
-        }
+        },
       }
     }
   };
