@@ -638,9 +638,6 @@ class App extends Component {
     }
     else {
       return {
-        "DC2": {
-          fill: "black"
-        },
         "NY": {
           fill: getColorbyContribution(Math.max(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations), this.state.dataset.max),
           clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
