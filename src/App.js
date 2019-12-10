@@ -27,6 +27,8 @@ import data14 from './JSON/2014.json';
 import data16 from './JSON/2016.json';
 import data18 from './JSON/2018.json';
 import data20 from './JSON/2020.json';
+
+//-- BEGIN CSS STYLES --//
 const sliderBar = {
   fontFamily: "sans-serif",
   textAlign: "center",
@@ -90,6 +92,7 @@ const legStyle = {
   margin: "0 auto",
   paddingTop: "20px"
 };
+//-- END CSS STYLES --//
 
 // These are the ranges of colors for the political map
 // The colors go from red to white to blue.
@@ -1181,6 +1184,9 @@ class App extends Component {
     }
   };
 
+  // Calculates the data needed for the pie chart,
+  // which is the percentage of democratic and republican donations
+  // for the US in a given year
   getPieData = () => {
     var angles = [];
 
@@ -1235,7 +1241,7 @@ class App extends Component {
           />
         </DonationBar>
         <div className="breakdownContainer" style={breakdownContainer}>
-          <RadialChart data={this.getPieData()} width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82} />
+          <RadialChart data={this.getPieData()} animation="true" width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82} />
           <div style={top15container}>
             <Top15Donations data={this.state.dataset}></Top15Donations>
           </div>
@@ -1326,6 +1332,8 @@ const DonationBar = ({ show, children }) => {
     return (<div></div>)
 }
 
+// Calculates the top 15 states by donation amount and
+// dynamically creates some HTML to display it
 const Top15Donations = ({ data }) => {
   var donations = [];
   donations.push(["Alaska", (data.AK.DemDonations + data.AK.RepDonations)]);
