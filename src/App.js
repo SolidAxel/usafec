@@ -5,14 +5,44 @@ import { ContinuousColorLegend, RadialChart } from 'react-vis';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './data';
-	
-const sliderBar = {	
-  fontFamily: "sans-serif",	
-  textAlign: "center",	
-  align: "center",	
-  height: "500px",	
-  left: "18px",	
-  top: "25px"	
+import {
+
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+
+  Bar,
+  BarChart
+} from "recharts";
+import data80 from './JSON/1980.json';
+import data82 from './JSON/1982.json';
+import data84 from './JSON/1984.json';
+import data86 from './JSON/1986.json';
+import data88 from './JSON/1988.json';
+import data90 from './JSON/1990.json';
+import data92 from './JSON/1992.json';
+import data94 from './JSON/1994.json';
+import data96 from './JSON/1996.json';
+import data98 from './JSON/1998.json';
+import data00 from './JSON/2000.json';
+import data02 from './JSON/2002.json';
+import data04 from './JSON/2004.json';
+import data06 from './JSON/2006.json';
+import data08 from './JSON/2008.json';
+import data10 from './JSON/2010.json';
+import data12 from './JSON/2012.json';
+import data14 from './JSON/2014.json';
+import data16 from './JSON/2016.json';
+import data18 from './JSON/2018.json';
+import data20 from './JSON/2020.json';
+const sliderBar = {
+  fontFamily: "sans-serif",
+  textAlign: "center",
+  align: "center",
+  height: "500px",
+  left: "18px",
+  top: "25px"
 };
 
 const labelStyle = {
@@ -20,14 +50,18 @@ const labelStyle = {
   color: "#FFFFFF"
 };
 
-const breakdownContainer = {	
+const breakdownContainer = {
   marginLeft: "auto",
-  marginRight: "auto",	
+  marginRight: "auto",
   marginTop: "100px",
   width: "60.5%",
   display: "flex",
 };
+const Graph = {
+  margin:"0 auto",
+  paddingTop:"50px"
 
+};
 const top15container = {
   height: "auto",
   width: "50%",
@@ -258,14 +292,14 @@ const marks = {
   },
 };
 
-const stickyContainer = {	
-  border: "1px solid black",	
-  background: "#F0F0F0",	
-  position: "sticky",	
-  float: "left",	
-  top: "100px",	
-  width: "95px",	
-  height: "550px"	
+const stickyContainer = {
+  border: "1px solid black",
+  background: "#F0F0F0",
+  position: "sticky",
+  float: "left",
+  top: "100px",
+  width: "95px",
+  height: "550px"
 };
 
 const myData = require('./data');
@@ -277,6 +311,7 @@ class App extends Component {
     headerBool: false,
     header: "USA FEC Individual Donations from",
     dataset: myData.data1980,
+    lineData: data80,
     e: null,
     state: null,
     data: null,
@@ -286,49 +321,50 @@ class App extends Component {
     funFact: null,
   }
 
+
   changeData = (year) => {
     if (year === 1980)
-      this.setState({ dataset: myData.data1980 });
+      this.setState({ dataset: myData.data1980, lineData: data80 });
     else if (year === 1982)
-      this.setState({ dataset: myData.data1982 });
+      this.setState({ dataset: myData.data1982, lineData: data82 });
     else if (year === 1984)
-      this.setState({ dataset: myData.data1984 });
+      this.setState({ dataset: myData.data1984, lineData: data84 });
     else if (year === 1986)
-      this.setState({ dataset: myData.data1986 });
+      this.setState({ dataset: myData.data1986, lineData: data86 });
     else if (year === 1988)
-      this.setState({ dataset: myData.data1988 });
+      this.setState({ dataset: myData.data1988, lineData: data88 });
     else if (year === 1990)
-      this.setState({ dataset: myData.data1990 });
+      this.setState({ dataset: myData.data1990, lineData: data90 });
     else if (year === 1992)
-      this.setState({ dataset: myData.data1992 });
+      this.setState({ dataset: myData.data1992, lineData: data92 });
     else if (year === 1994)
-      this.setState({ dataset: myData.data1994 });
+      this.setState({ dataset: myData.data1994, lineData: data94 });
     else if (year === 1996)
-      this.setState({ dataset: myData.data1996 });
+      this.setState({ dataset: myData.data1996, lineData: data96 });
     else if (year === 1998)
-      this.setState({ dataset: myData.data1998 });
+      this.setState({ dataset: myData.data1998, lineData: data98 });
     else if (year === 2000)
-      this.setState({ dataset: myData.data2000 });
+      this.setState({ dataset: myData.data2000, lineData: data00 });
     else if (year === 2002)
-      this.setState({ dataset: myData.data2002 });
+      this.setState({ dataset: myData.data2002, lineData: data02 });
     else if (year === 2004)
-      this.setState({ dataset: myData.data2004 });
+      this.setState({ dataset: myData.data2004, lineData: data04 });
     else if (year === 2006)
-      this.setState({ dataset: myData.data2006 });
+      this.setState({ dataset: myData.data2006, lineData: data06 });
     else if (year === 2008)
-      this.setState({ dataset: myData.data2008 });
+      this.setState({ dataset: myData.data2008, lineData: data08 });
     else if (year === 2010)
-      this.setState({ dataset: myData.data2010 });
+      this.setState({ dataset: myData.data2010, lineData: data10 });
     else if (year === 2012)
-      this.setState({ dataset: myData.data2012 });
+      this.setState({ dataset: myData.data2012, lineData: data12 });
     else if (year === 2014)
-      this.setState({ dataset: myData.data2014 });
+      this.setState({ dataset: myData.data2014, lineData: data14 });
     else if (year === 2016)
-      this.setState({ dataset: myData.data2016 });
+      this.setState({ dataset: myData.data2016, lineData: data16 });
     else if (year === 2018)
-      this.setState({ dataset: myData.data2018 });
+      this.setState({ dataset: myData.data2018, lineData: data18 });
     else
-      this.setState({ dataset: myData.data2020 });
+      this.setState({ dataset: myData.data2020, lineData: data20 });
   }
 
   showModal = (e, name, data) => {
@@ -1127,9 +1163,9 @@ class App extends Component {
     }
   };
 
-  getPieData = () => {	
-    var angles = [];	
-  
+  getPieData = () => {
+    var angles = [];
+
     var totalDonations = this.state.dataset.totalDem + this.state.dataset.totalRep;
     var percentDem = this.state.dataset.totalDem / totalDonations;
     var percentRep = this.state.dataset.totalRep / totalDonations;
@@ -1137,19 +1173,19 @@ class App extends Component {
 
     var dem = (percentDem * 100).toFixed(2) + " % Democratic";
     var rep = (percentRep * 100).toFixed(2) + " % Republican";
-    	
-    angles.push({angle: percentDem, color: "#0A25FF", label: dem});
-    angles.push({angle: percentRep, color: "#FF0000", label: rep});
-    angles.push({angle: percentInd, color: "green"});
-    
-    return angles;	
+
+    angles.push({ angle: percentDem, color: "#0A25FF", label: dem });
+    angles.push({ angle: percentRep, color: "#FF0000", label: rep });
+    angles.push({ angle: percentInd, color: "green" });
+
+    return angles;
   }
 
   render() {
     return (
       <div className="mapContainer">
-        <div className="stickyContainer" style={stickyContainer}>	
-          <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} vertical={true} style={sliderBar}/>	
+        <div className="stickyContainer" style={stickyContainer}>
+          <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} vertical={true} style={sliderBar} />
         </div>
         <div className="App">
           <h1>
@@ -1180,21 +1216,31 @@ class App extends Component {
             midColor="rgb(255,75,0)"
           />
         </DonationBar>
-        <div className="breakdownContainer" style={breakdownContainer}>	
-          <RadialChart data={this.getPieData()} width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82}/>
+        <div className="breakdownContainer" style={breakdownContainer}>
+          <RadialChart data={this.getPieData()} width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82} />
           <div style={top15container}>
             <Top15Donations data={this.state.dataset}></Top15Donations>
-          </div>	
-        </div>
-        <Modal show={this.state.show} handleClose={this.hideModal}>
-          <div>
-            <p>{this.state.state}</p>
-            <p>{this.state.funFact}</p>
-            <p>{this.state.percentageOfDon}</p>
-            <p>{this.state.totalStateDonations}</p>
           </div>
-        </Modal>
-      </div>
+        </div>
+        <div>
+          <BarChart width={1200} height={600} style={Graph} data={this.state.lineData} maxBarSize={50} >
+            <YAxis tick={<CustomizedYAxisTick />} />
+            <XAxis dataKey='state' tick={<CustomizedXAxisTick />} interval={0} />
+            <Tooltip position={{ y: 200 }} />
+            <CartesianGrid stroke='#f5f5f5' />
+            <Bar dataKey='rep' stackId="a" fill='red' strokeWidth={2} />
+            <Bar dataKey='dem' stackId="a" fill='blue' strokeWidth={2} />
+          </BarChart>
+        </div>
+      <Modal show={this.state.show} handleClose={this.hideModal}>
+        <div>
+          <p>{this.state.state}</p>
+          <p>{this.state.funFact}</p>
+          <p>{this.state.percentageOfDon}</p>
+          <p>{this.state.totalStateDonations}</p>
+        </div>
+      </Modal>
+      </div >
     );
   }
 }
@@ -1212,7 +1258,28 @@ const Modal = ({ handleClose, show, children }) => {
     </div>
   );
 };
+const CustomizedXAxisTick = () => ({
+  render() {
+    const { x, y, payload } = this.props;
 
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text x={0} y={4} dy={0} fontSize={15} textAnchor="end" fill="#000" transform="rotate(-90)">{payload.value}</text>
+      </g>
+    );
+  }
+});
+const CustomizedYAxisTick = () => ({
+  render() {
+    const { x, y, payload } = this.props;
+
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text x={0} y={0} dy={3} fontSize={10} textAnchor="end" fill="#000" transform="rotate(0)">{payload.value}</text>
+      </g>
+    );
+  }
+});
 const PoliticalBar = ({ show, children }) => {
   if (show) {
     return (
@@ -1296,9 +1363,8 @@ const Top15Donations = ({ data }) => {
   donations = donations.sort((a, b) => a[1] < b[1])
   console.log(donations);
 
-  var items=[]
-  for (var i = 0; i < 15; i++)
-  {
+  var items = []
+  for (var i = 0; i < 15; i++) {
     items.push(<tr style={top15tr}><span style={trSpan}>{donations[i][0]}:</span> <span>${Math.ceil(donations[i][1]).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</span></tr>)
   }
 
@@ -1307,7 +1373,7 @@ const Top15Donations = ({ data }) => {
       <th style={top15th}>
         Top 15 Donations by State
       </th>
-      <hr/>
+      <hr />
       {items}
     </div>
   )
