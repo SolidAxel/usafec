@@ -281,7 +281,7 @@ class App extends Component {
       this.setState({ dataset: myData.data2020 });
   }
 
-  showModal = (e,name, data) => {
+  showModal = (e, name, data) => {
     this.setState({
       e: e,
       show: true,
@@ -370,14 +370,14 @@ class App extends Component {
         },
         "NY": {
           fill: getColor(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
-          clickHandler: (e) => this.showModal(e.target.dataset.name,"New York" ,"Graph will go here",
-          this.getPercentage(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
-          this.getTotal(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
-          this.inStateDistribution(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations)),
+          clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
+            this.getPercentage(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
+            this.getTotal(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
+            this.inStateDistribution(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations)),
         },
         "AZ": {
           fill: getColor(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations),
-          clickHandler: (e) => this.showModal(e.target.dataset.name,"Arizona", "Graph will go here",
+          clickHandler: (e) => this.showModal(e.target.dataset.name, "Arizona", "Graph will go here",
             this.getPercentage(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations),
             this.getTotal(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations),
             this.inStateDistribution(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations)),
@@ -1112,17 +1112,13 @@ class App extends Component {
           <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} />
         </div>
         <Modal show={this.state.show} handleClose={this.hideModal}>
-            {this.state.state}
-            <div></div>
-            {this.state.funFact}
-            <div></div>
-            {this.state.percentageOfDon}
-            <div></div>
-            {this.state.totalStateDonations}
-            <div></div>
-            {this.state.data}
-            <div></div>
-          </Modal>
+          <div>
+            <p>{this.state.state}</p>
+            <p>{this.state.funFact}</p>
+            <p>{this.state.percentageOfDon}</p>
+            <p>{this.state.totalStateDonations}</p>
+          </div>
+        </Modal>
       </div>
     );
   }
@@ -1136,6 +1132,7 @@ const Modal = ({ handleClose, show, children }) => {
       <section className='modal-main'>
         {children}
         <button onClick={handleClose}> Close</button>
+        <p></p>
       </section>
     </div>
   );
