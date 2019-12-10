@@ -305,6 +305,7 @@ class App extends Component {
   getTotal = (dem, rep) => {
     var total = "The total contributions of this state was $" + (dem + rep).toFixed(2) + ".";
     this.setState({ totalStateDonations: total });
+    return total;
   }
 
   comparisonToUS = (dem, rep) => {
@@ -1082,8 +1083,6 @@ class App extends Component {
           <Modal show={this.state.show} handleClose={this.hideModal}>
             {this.state.state}
             <div></div>
-            {this.state.e}
-            <div></div>
             {this.state.funFact}
             <div></div>
             {this.state.percentageOfDon}
@@ -1131,12 +1130,7 @@ const Modal = ({ handleClose, show, children }) => {
     <div className={showHideClassName} >
       <section className='modal-main'>
         {children}
-
-        <button
-          onClick={handleClose}
-        >
-          Close
-        </button>
+        <button onClick={handleClose}> Close</button>
       </section>
     </div>
   );
