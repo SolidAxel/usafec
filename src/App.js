@@ -15,7 +15,7 @@ import {
   Line,
   LineChart
 } from "recharts";
-import Select from 'react-select';
+//import Select from 'react-select';
 
 var dataname;
 const sliderBar = {
