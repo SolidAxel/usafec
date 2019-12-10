@@ -6,8 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Run the following in your terminal, within the project directory:
 
-    * npm install --save rc-slider
+    * npm install rc-slider --save 
     * npm install react-usa-map --save
+    * npm install recharts --save
 ## Running:
 
 To run the project simply enter **npm start** in your terminal within the project directory.
