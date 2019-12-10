@@ -1,4 +1,7 @@
+//This code is basically repeated for every year excluding the actual values associated to each field.
+//Therefore I am only going to comment the first row of data. The rest is the same just the state and data are different.
 module.exports = {
+    //The Years 1979-1980 have the following data:
     data1980 : {
         max: 48224805.05,  // Highest donation amount among all of the state total donations.
         totalDem: 144241181.98, // Value of all Dem donations in a given year

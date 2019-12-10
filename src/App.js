@@ -91,6 +91,8 @@ const legStyle = {
   paddingTop: "20px"
 };
 
+// These are the ranges of colors for the political map
+// The colors go from red to white to blue.
 var politicalColors = [
   { pct: 0.0, color: { r: 0xff, g: 0x00, b: 0x00 } },
   { pct: 0.5, color: { r: 0xec, g: 0xec, b: 0xec } },
@@ -100,25 +102,31 @@ var getColor = function (demDonations, repDonations) {
   var total = demDonations + repDonations;
   var percentage = demDonations / total;
 
+  //compares the calculated percentage to the one in the colors JSON above.
   for (var i = 1; i < politicalColors.length - 1; i++) {
     if (percentage < politicalColors[i].pct) {
       break
     }
   }
+  //Calculates how close to the above color the state needs to be.
   var lower = politicalColors[i - 1];
   var upper = politicalColors[i];
   var range = upper.pct - lower.pct;
   var rangePct = (percentage - lower.pct) / range;
   var pctLower = 1 - rangePct;
   var pctUpper = rangePct;
+  //Sets the color calculated
   var mycolor = {
     r: Math.floor(lower.color.r * pctLower + upper.color.r * pctUpper),
     g: Math.floor(lower.color.g * pctLower + upper.color.g * pctUpper),
     b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper)
   };
+  //returns the color.
   return 'rgb(' + [mycolor.r, mycolor.g, mycolor.b].join(',') + ')';
 }
 
+// These are the ranges of colors for the donations map
+// The colors go from yellow to brown.
 var donationColors = [
   { pct: 0.0, color: { r: 0xff, g: 0xff, b: 100 } },
   { pct: 0.1, color: { r: 0xff, g: 175, b: 0x00 } },
@@ -126,30 +134,37 @@ var donationColors = [
   { pct: 0.3, color: { r: 0xff, g: 25, b: 0x00 } },
   { pct: 0.4, color: { r: 200, g: 25, b: 0x00 } },
   { pct: 0.5, color: { r: 150, g: 25, b: 0x00 } },
-  { pct: 1.0, color: { r: 100, g: 25, b: 0 } }];
+  { pct: 1.0, color: { r: 100, g: 25, b: 0 } }
+];
 
+  //Sets the color for each state in the map
 var getColorbyContribution = function (stateContribution, max) {
   var percentage = stateContribution / max;
 
+  //compares the calculated percentage to the one in the colors JSON above.
   for (var i = 1; i < donationColors.length - 1; i++) {
     if (percentage < donationColors[i].pct) {
       break
     }
   }
+  //Calculates how close to the above color the state needs to be.
   var lower = donationColors[i - 1];
   var upper = donationColors[i];
   var range = upper.pct - lower.pct;
   var rangePct = (percentage - lower.pct) / range;
   var pctLower = 1 - rangePct;
   var pctUpper = rangePct;
+  //Sets the color calculated
   var mycolor = {
     r: Math.floor(lower.color.r * pctLower + upper.color.r * pctUpper),
     g: Math.floor(lower.color.g * pctLower + upper.color.g * pctUpper),
     b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper)
   };
+  //returns the color.
   return 'rgb(' + [mycolor.r, mycolor.g, mycolor.b].join(',') + ')';
 }
 
+//Creating global variables for red and blue.
 const repRed = "#FF0000"
 const demBlue = "#0015BC"
 
@@ -308,10 +323,10 @@ class App extends Component {
     totalStateDonations: null,
     percentageOfDon: null,
     politicalGraph: true,
-    funFact: null,
+    funFact: null,         //fact that switches between political and contributions maps.
   }
 
-
+  //This function sets the data used in this file to be in synch with the slider.
   changeData = (year) => {
     if (year === 1980)
       this.setState({ dataset: myData.data1980, lineData: data80 });
@@ -375,7 +390,7 @@ class App extends Component {
       isRep = true;
     else if (rep < dem)
       isRep = false;
-
+    //Display how much of their respective political affiliation they donated relative to the whole US.
     if (isRep)
       percentage = "This state makes up " + ((rep / this.state.dataset.totalRep) * 100).toFixed(2) + "% of Republican Donations in the US";
     else
@@ -384,12 +399,14 @@ class App extends Component {
     this.setState({ percentageOfDon: percentage });
   }
 
+  //Calculates the total donation for each state.
   getTotal = (dem, rep) => {
     var total = "The total contributions of this state was $" + (dem + rep).toFixed(2) + ".";
     this.setState({ totalStateDonations: total });
     return total;
   }
 
+  //Compares the total value of the state relative to all donations in the US.
   comparisonToUS = (dem, rep) => {
     var USTotal = this.state.dataset.totalDem + this.state.dataset.totalRep;
     var percent = ((dem + rep) / USTotal * 100).toFixed(2);
@@ -397,6 +414,7 @@ class App extends Component {
     this.setState({ funFact: total });
   }
 
+  //Display how much of each state is republican or democratic.
   inStateDistribution = (dem, rep) => {
     var percentage = 0;
 
@@ -414,6 +432,7 @@ class App extends Component {
     this.setState({ show: false });
   }
 
+  //Sets the year so that the title can change, and it also allows for the data to change.
   setYear = (value) => {
     this.setState({ year: (value - 1) + " - " + value });
     this.changeData(value);
@@ -422,7 +441,6 @@ class App extends Component {
 
   sliderLog(value) {
     console.log(value); //eslint-disable-line
-    //setYear(value);
   }
 
   /* mandatory */
@@ -430,6 +448,7 @@ class App extends Component {
     alert(event.target.dataset.name);
   }
 
+  //This is the logic that switches the title of the map along with what is displayed on the map.
   manageButton = () => {
     this.setState({
       politicalGraph: !this.state.politicalGraph,
@@ -439,14 +458,20 @@ class App extends Component {
   }
 
   /* optional customization of filling per state and calling custom callbacks per state */
+  //Sets each state's color and infomation on the map.
+  //Theres a lot of repeated logic so i'll just comment the top.
   statesCustomConfig = () => {
-    if (this.state.politicalGraph) {
+    if (this.state.politicalGraph) { //If the graph is political then display the below
       return {
+        //Set DC to be black.
         "DC2": {
           fill: "black"
         },
+        //In the state of New York
         "NY": {
+          //Set the color based on its political affiliation
           fill: getColor(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
+          //Set the information that appears in the pop-up when the state is clicked.
           clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
             this.getPercentage(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
             this.getTotal(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
@@ -797,8 +822,11 @@ class App extends Component {
         }
       }
     }
-    else {
+    else { //If it's not political do the below.
       return {
+        "DC2": {
+          fill: "black"
+        },
         "NY": {
           fill: getColorbyContribution(Math.max(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations), this.state.dataset.max),
           clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
