@@ -1,26 +1,66 @@
 import React, { Component } from 'react';
 import './App.scss'; /* optional for styling like the :hover pseudo-class */
 import USAMap from "react-usa-map";
-import { ContinuousColorLegend } from 'react-vis';
+import { ContinuousColorLegend, RadialChart } from 'react-vis';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './data';
-
-const sliderBar = {
-  fontFamily: "sans-serif",
-  textAlign: "center",
-  paddingTop: "10px",
-  align: "center",
-  width: "1000px",
-  margin: "0 auto",
+	
+const sliderBar = {	
+  fontFamily: "sans-serif",	
+  textAlign: "center",	
+  align: "center",	
+  height: "500px",	
+  left: "18px",	
+  top: "25px"	
 };
+
+const labelStyle = {
+  fontFamily: "sans-serif",
+  color: "#FFFFFF"
+};
+
+const breakdownContainer = {	
+  marginLeft: "auto",
+  marginRight: "auto",	
+  marginTop: "100px",
+  width: "60.5%",
+  display: "flex",
+};
+
+const top15container = {
+  height: "auto",
+  width: "50%",
+  marginLeft: "100px",
+  flex: "1"
+};
+
+const top15tr = {
+  fontFamily: "sans-serif",
+  height: "29px",
+  fontSize: "18px"
+};
+
+const top15th = {
+  fontFamily: "sans-serif",
+  height: "30px",
+  fontSize: "25px"
+};
+
+const trSpan = {
+  display: "inline-block",
+  width: "150px",
+  fontWeight: "600"
+}
+
 const ModalStyle = {
   fontFamily: "sans-serif",
   textAlign: "center",
   paddingTop: "10px",
   align: "center",
   margin: "0 auto",
-}
+};
+
 const legStyle = {
   width: "300px",
   margin: "0 auto",
@@ -218,6 +258,17 @@ const marks = {
   },
 };
 
+const stickyContainer = {	
+  border: "1px solid black",	
+  background: "#F0F0F0",	
+  position: "-webkit-sticky",	
+  position: "sticky",	
+  float: "left",	
+  top: "100px",	
+  width: "95px",	
+  height: "550px"	
+};
+
 const myData = require('./data');
 
 class App extends Component {
@@ -307,6 +358,7 @@ class App extends Component {
 
     this.setState({ percentageOfDon: percentage });
   }
+
   getTotal = (dem, rep) => {
     var total = "The total contributions of this state was $" + (dem + rep).toFixed(2) + ".";
     this.setState({ totalStateDonations: total });
@@ -346,12 +398,12 @@ class App extends Component {
   sliderLog(value) {
     console.log(value); //eslint-disable-line
     //setYear(value);
-  };
+  }
 
   /* mandatory */
   mapHandler = (event) => {
     alert(event.target.dataset.name);
-  };
+  }
 
   manageButton = () => {
     this.setState({
@@ -1076,9 +1128,30 @@ class App extends Component {
     }
   };
 
+  getPieData = () => {	
+    var angles = [];	
+  
+    var totalDonations = this.state.dataset.totalDem + this.state.dataset.totalRep;
+    var percentDem = this.state.dataset.totalDem / totalDonations;
+    var percentRep = this.state.dataset.totalRep / totalDonations;
+    var percentInd = 1 - percentDem - percentRep;
+
+    var dem = (percentDem * 100).toFixed(2) + " % Democratic";
+    var rep = (percentRep * 100).toFixed(2) + " % Republican";
+    	
+    angles.push({angle: percentDem, color: "#0A25FF", label: dem});
+    angles.push({angle: percentRep, color: "#FF0000", label: rep});
+    angles.push({angle: percentInd, color: "green"});
+    
+    return angles;	
+  }
+
   render() {
     return (
       <div className="mapContainer">
+        <div className="stickyContainer" style={stickyContainer}>	
+          <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} vertical={true} style={sliderBar}/>	
+        </div>
         <div className="App">
           <h1>
             {this.state.header} {this.state.year}
@@ -1089,9 +1162,9 @@ class App extends Component {
         <PoliticalBar show={this.state.politicalGraph}>
           <ContinuousColorLegend
             width={300}
-            startTitle="%DEM"
-            midTitle="0"
-            endTitle="%REP"
+            startTitle="Democratic"
+            midTitle="Neutral"
+            endTitle="Republican"
             startColor={demBlue}
             endColor={repRed}
             midColor="white"
@@ -1108,8 +1181,11 @@ class App extends Component {
             midColor="rgb(255,75,0)"
           />
         </DonationBar>
-        <div style={sliderBar}>
-          <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} />
+        <div className="breakdownContainer" style={breakdownContainer}>	
+          <RadialChart data={this.getPieData()} width={500} height={500} colorType="literal" showLabels={true} labelsStyle={labelStyle} labelsRadiusMultiplier={0.82}/>
+          <div style={top15container}>
+            <Top15Donations data={this.state.dataset}></Top15Donations>
+          </div>	
         </div>
         <Modal show={this.state.show} handleClose={this.hideModal}>
             {this.state.state}
@@ -1167,6 +1243,78 @@ const DonationBar = ({ show, children }) => {
   }
   else
     return (<div></div>)
+}
+
+const Top15Donations = ({ data }) => {
+  var donations = [];
+  donations.push(["Alaska", (data.AK.DemDonations + data.AK.RepDonations)]);
+  donations.push(["Alabama", (data.AL.DemDonations + data.AL.RepDonations)]);
+  donations.push(["Arkansas", (data.AR.DemDonations + data.AR.RepDonations)]);
+  donations.push(["Arizona", (data.AZ.DemDonations + data.AZ.RepDonations)]);
+  donations.push(["California", (data.CA.DemDonations + data.CA.RepDonations)]);
+  donations.push(["Colorado", (data.CO.DemDonations + data.CO.RepDonations)]);
+  donations.push(["Connecticut", (data.CT.DemDonations + data.CT.RepDonations)]);
+  donations.push(["Delaware", (data.DE.DemDonations + data.DE.RepDonations)]);
+  donations.push(["Florida", (data.FL.DemDonations + data.FL.RepDonations)]);
+  donations.push(["Georgia", (data.GA.DemDonations + data.GA.RepDonations)]);
+  donations.push(["Hawaii", (data.HI.DemDonations + data.HI.RepDonations)]);
+  donations.push(["Iowa", (data.IA.DemDonations + data.IA.RepDonations)]);
+  donations.push(["Idaho", (data.ID.DemDonations + data.ID.RepDonations)]);
+  donations.push(["Illinois", (data.IL.DemDonations + data.IL.RepDonations)]);
+  donations.push(["Indiana", (data.IN.DemDonations + data.IN.RepDonations)]);
+  donations.push(["Kansas", (data.KS.DemDonations + data.KS.RepDonations)]);
+  donations.push(["Kentucky", (data.KY.DemDonations + data.KY.RepDonations)]);
+  donations.push(["Louisiana", (data.LA.DemDonations + data.LA.RepDonations)]);
+  donations.push(["Massachusetts", (data.MA.DemDonations + data.MA.RepDonations)]);
+  donations.push(["Maryland", (data.MD.DemDonations + data.MD.RepDonations)]);
+  donations.push(["Maine", (data.ME.DemDonations + data.ME.RepDonations)]);
+  donations.push(["Michigan", (data.MI.DemDonations + data.MI.RepDonations)]);
+  donations.push(["Minnesota", (data.MN.DemDonations + data.MN.RepDonations)]);
+  donations.push(["Missouri", (data.MO.DemDonations + data.MO.RepDonations)]);
+  donations.push(["Mississippi", (data.MS.DemDonations + data.MS.RepDonations)]);
+  donations.push(["Montana", (data.MT.DemDonations + data.MT.RepDonations)]);
+  donations.push(["North Carolina", (data.NC.DemDonations + data.NC.RepDonations)]);
+  donations.push(["North Dakota", (data.ND.DemDonations + data.ND.RepDonations)]);
+  donations.push(["Nebraska", (data.NE.DemDonations + data.NE.RepDonations)]);
+  donations.push(["New Hampshire", (data.NH.DemDonations + data.NH.RepDonations)]);
+  donations.push(["New Jersey", (data.NJ.DemDonations + data.NJ.RepDonations)]);
+  donations.push(["New Mexico", (data.NM.DemDonations + data.NM.RepDonations)]);
+  donations.push(["Nevada", (data.NV.DemDonations + data.NV.RepDonations)]);
+  donations.push(["New York", (data.NY.DemDonations + data.NY.RepDonations)]);
+  donations.push(["Ohio", (data.OH.DemDonations + data.OH.RepDonations)]);
+  donations.push(["Oklahoma", (data.OK.DemDonations + data.OK.RepDonations)]);
+  donations.push(["Oregon", (data.OR.DemDonations + data.OR.RepDonations)]);
+  donations.push(["Pennsylvania", (data.PA.DemDonations + data.PA.RepDonations)]);
+  donations.push(["Rhode Island", (data.RI.DemDonations + data.RI.RepDonations)]);
+  donations.push(["South Carolina", (data.SC.DemDonations + data.SC.RepDonations)]);
+  donations.push(["South Dakota", (data.SD.DemDonations + data.SD.RepDonations)]);
+  donations.push(["Tennessee", (data.TN.DemDonations + data.TN.RepDonations)]);
+  donations.push(["Texas", (data.TX.DemDonations + data.TX.RepDonations)]);
+  donations.push(["Utah", (data.UT.DemDonations + data.UT.RepDonations)]);
+  donations.push(["Virginia", (data.VA.DemDonations + data.VA.RepDonations)]);
+  donations.push(["Vermont", (data.VT.DemDonations + data.VT.RepDonations)]);
+  donations.push(["Washington", (data.WA.DemDonations + data.WA.RepDonations)]);
+  donations.push(["Wisconson", (data.WI.DemDonations + data.WI.RepDonations)]);
+  donations.push(["West Virginia", (data.WV.DemDonations + data.WV.RepDonations)]);
+  donations.push(["Wyoming", (data.WY.DemDonations + data.WY.RepDonations)]);
+  donations = donations.sort((a, b) => a[1] < b[1])
+  console.log(donations);
+
+  var items=[]
+  for (var i = 0; i < 15; i++)
+  {
+    items.push(<tr style={top15tr}><span style={trSpan}>{donations[i][0]}:</span> <span>${Math.ceil(donations[i][1]).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</span></tr>)
+  }
+
+  return (
+    <div>
+      <th style={top15th}>
+        Top 15 Donations by State
+      </th>
+      <hr/>
+      {items}
+    </div>
+  )
 }
 
 const container = document.createElement('div');
