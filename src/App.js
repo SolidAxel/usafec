@@ -45,13 +45,12 @@ const breakdownContainer = {
   marginLeft: "auto",
   marginRight: "auto",
   marginTop: "100px",
-  width: "60.5%",
+  width: "1000px",
   display: "flex",
 };
 const Graph = {
   margin:"0 auto",
-  paddingTop:"50px"
-
+  paddingTop:"50px",
 };
 const top15container = {
   height: "auto",
@@ -69,7 +68,7 @@ const top15tr = {
 const top15th = {
   fontFamily: "sans-serif",
   height: "30px",
-  fontSize: "25px"
+  fontSize: "25px",
 };
 
 const trSpan = {
@@ -1215,8 +1214,8 @@ class App extends Component {
         </div>
         <div>
           <BarChart width={1200} height={600} style={Graph} data={this.state.lineData} maxBarSize={50} >
-            <YAxis tick={<CustomizedYAxisTick />} />
-            <XAxis dataKey='state' tick={<CustomizedXAxisTick />} interval={0} />
+            <YAxis tick={<CustomizedYAxisTick />}/>
+            <XAxis dataKey='state' tick={<CustomizedXAxisTick />} interval={0}/>
             <Tooltip position={{ y: 200 }} />
             <CartesianGrid stroke='#f5f5f5' />
             <Bar dataKey='rep' stackId="a" fill='red' strokeWidth={2} />
@@ -1255,7 +1254,7 @@ const CustomizedXAxisTick = () => ({
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={4} dy={0} fontSize={15} textAnchor="end" fill="#000" transform="rotate(-90)">{payload.value}</text>
+        <text x={0} y={4} dy={0} fontSize={12} textAnchor="end" fill="#000" transform="rotate(-90)">{payload.value}</text>
       </g>
     );
   }
