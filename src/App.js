@@ -218,6 +218,8 @@ class App extends Component {
   state = {
     show: false,
     year: "1979 - 1980",
+    headerBool: false,
+    header: "USA FEC Individual Donations from",
     dataset: myData.data1980,
     e: null,
     state: null,
@@ -346,7 +348,11 @@ class App extends Component {
   };
 
   manageButton = () => {
-    this.setState({ politicalGraph: !this.state.politicalGraph })
+    this.setState({
+      politicalGraph: !this.state.politicalGraph,
+      headerBool: !this.state.headerBool,
+      header: this.state.headerBool ? "USA FEC Individual Donations from" : "USA FEC Total Donations from"
+    })
   }
 
   /* optional customization of filling per state and calling custom callbacks per state */
@@ -1069,7 +1075,7 @@ class App extends Component {
       <div className="mapContainer">
         <div className="App">
           <h1>
-            USA FEC Individual Donations from <year>{this.state.year}</year>
+            {this.state.header} {this.state.year}
           </h1>
           <h2><button onClick={this.manageButton}>Change Type of Map</button></h2>
           <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
