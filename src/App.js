@@ -48,34 +48,35 @@ var getColor = function (demDonations, repDonations) {
   return 'rgb(' + [mycolor.r, mycolor.g, mycolor.b].join(',') + ')';
 }
 
-function getColorbyContribution(stateContribution, max) {
-  var rgb = "rgb(225,225,225)"; //Default to white
+var donationColors = [
+  { pct: 0.0, color: { r: 0xff, g: 0xff, b: 100 } },
+  { pct: 0.1, color: { r: 0xff, g: 175, b: 0x00 } },
+  { pct: 0.2, color: { r: 0xff, g: 100, b: 0x00 } },
+  { pct: 0.3, color: { r: 0xff, g: 25, b: 0x00 } },
+  { pct: 0.4, color: { r: 200, g: 25, b: 0x00 } },
+  { pct: 0.5, color: { r: 150, g: 25, b: 0x00 } },
+  { pct: 1.0, color: { r: 100, g: 25, b: 0 } }];
+
+var getColorbyContribution = function(stateContribution, max) {
   var percentage = stateContribution / max;
 
-  if (percentage >= 1)
-    rgb = "rgb(50,25,0)";
-  else if (percentage > .9)
-    rgb = "rgb(100,25,0)";
-  else if (percentage > .8)
-    rgb = "rgb(150,25,0)";
-  else if (percentage > .7)
-    rgb = "rgb(200,25,0)";
-  else if (percentage > .6)
-    rgb = "rgb(255,25,0)";
-  else if (percentage > .5)
-    rgb = "rgb(255,75,0)";
-  else if (percentage > .4)
-    rgb = "rgb(255,125,0)";
-  else if (percentage > .3)
-    rgb = "rgb(255,175,0)";
-  else if (percentage > .2)
-    rgb = "rgb(255,225,0)";
-  else if (percentage > .1)
-    rgb = "rgb(255,255,0)";
-  else
-    rgb = "rgb(255,255,100)";
-
-  return (rgb);
+  for (var i = 1; i < donationColors.length - 1; i++) {
+    if (percentage < donationColors[i].pct) {
+      break
+    }
+  }
+  var lower = donationColors[i - 1];
+  var upper = donationColors[i];
+  var range = upper.pct - lower.pct;
+  var rangePct = (percentage - lower.pct) / range;
+  var pctLower = 1 - rangePct;
+  var pctUpper = rangePct;
+  var mycolor = {
+    r: Math.floor(lower.color.r * pctLower + upper.color.r * pctUpper),
+    g: Math.floor(lower.color.g * pctLower + upper.color.g * pctUpper),
+    b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper)
+  };
+  return 'rgb(' + [mycolor.r, mycolor.g, mycolor.b].join(',') + ')';
 }
 
 const repRed = "#FF0000"
