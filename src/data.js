@@ -1,9 +1,3 @@
-
-//Made for the testing of getColor();
-function randNum() {
-    return Math.random() * 90000;
-}
-
 module.exports = {
     data1980 : {
         max: 48224805.05,  // Highest donation amount among all of the state total donations.

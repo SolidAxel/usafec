@@ -1348,6 +1348,7 @@ class App extends Component {
     show: false,
     year: "1979 - 1980",
     dataset: myData.data1980,
+    lineData: newdata1980,
     e: null,
     state: null,
     data: null,
@@ -1359,47 +1360,47 @@ class App extends Component {
 
   changeData = (year) => {
     if (year === 1980)
-      this.setState({ dataset: myData.data1980 });
+      this.setState({ dataset: myData.data1980, lineData: newdata1980});
     else if (year === 1982)
-      this.setState({ dataset: myData.data1982 });
+      this.setState({ dataset: myData.data1982, lineData: newdata1982 });
     else if (year === 1984)
-      this.setState({ dataset: myData.data1984 });
+      this.setState({ dataset: myData.data1984, lineData: newdata1984 });
     else if (year === 1986)
-      this.setState({ dataset: myData.data1986 });
+      this.setState({ dataset: myData.data1986, lineData: newdata1986 });
     else if (year === 1988)
-      this.setState({ dataset: myData.data1988 });
+      this.setState({ dataset: myData.data1988, lineData: newdata1988 });
     else if (year === 1990)
-      this.setState({ dataset: myData.data1990 });
+      this.setState({ dataset: myData.data1990, lineData: newdata1990 });
     else if (year === 1992)
-      this.setState({ dataset: myData.data1992 });
+      this.setState({ dataset: myData.data1992, lineData: newdata1992 });
     else if (year === 1994)
-      this.setState({ dataset: myData.data1994 });
+      this.setState({ dataset: myData.data1994, lineData: newdata1994 });
     else if (year === 1996)
-      this.setState({ dataset: myData.data1996 });
+      this.setState({ dataset: myData.data1996, lineData: newdata1996 });
     else if (year === 1998)
-      this.setState({ dataset: myData.data1998 });
+      this.setState({ dataset: myData.data1998, lineData: newdata1998 });
     else if (year === 2000)
-      this.setState({ dataset: myData.data2000 });
+      this.setState({ dataset: myData.data2000, lineData: newdata2000 });
     else if (year === 2002)
-      this.setState({ dataset: myData.data2002 });
+      this.setState({ dataset: myData.data2002, lineData: newdata2002 });
     else if (year === 2004)
-      this.setState({ dataset: myData.data2004 });
+      this.setState({ dataset: myData.data2004, lineData: newdata2004 });
     else if (year === 2006)
-      this.setState({ dataset: myData.data2006 });
+      this.setState({ dataset: myData.data2006, lineData: newdata2006 });
     else if (year === 2008)
-      this.setState({ dataset: myData.data2008 });
+      this.setState({ dataset: myData.data2008, lineData: newdata2008 });
     else if (year === 2010)
-      this.setState({ dataset: myData.data2010 });
+      this.setState({ dataset: myData.data2010, lineData: newdata2010 });
     else if (year === 2012)
-      this.setState({ dataset: myData.data2012 });
+      this.setState({ dataset: myData.data2012, lineData: newdata2012 });
     else if (year === 2014)
-      this.setState({ dataset: myData.data2014 });
+      this.setState({ dataset: myData.data2014, lineData: newdata2014 });
     else if (year === 2016)
-      this.setState({ dataset: myData.data2016 });
+      this.setState({ dataset: myData.data2016, lineData: newdata2016 });
     else if (year === 2018)
-      this.setState({ dataset: myData.data2018 });
+      this.setState({ dataset: myData.data2018, lineData: newdata2018 });
     else
-      this.setState({ dataset: myData.data2020 });
+      this.setState({ dataset: myData.data2020, lineData: newdata2020 });
   }
 
   showModal = (stated, name, data) => {
@@ -2120,31 +2121,8 @@ filterProducts = (e) => {
         <div style={sliderBar}>
           <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} />
         </div>
-        <select id="dropdown" onChange={this.filterProducts.bind(this)}>
-          <option value="newdata1980">1980</option>
-          <option value="newdata1982">1982</option>
-          <option value="newdata1984">1984</option>
-          <option value="newdata1986">1986</option>
-          <option value="newdata1988">1988</option>
-          <option value="newdata1990">1990</option>
-          <option value="newdata1992">1992</option>
-          <option value="newdata1994">1994</option>
-          <option value="newdata1996">1996</option>
-          <option value="newdata1998">1998</option>
-          <option value="newdata2000">2000</option>
-          <option value="newdata2002">2002</option>
-          <option value="newdata2004">2004</option>
-          <option value="newdata2006">2006</option>
-          <option value="newdata2008">2008</option>
-          <option value="newdata2010">2010</option>
-          <option value="newdata2012">2012</option>
-          <option value="newdata2014">2014</option>
-          <option value="newdata2016">2016</option>
-          <option value="newdata2018">2018</option>
-          <option value="newdata2020">2020</option>
-        </select>
         <div className="graph" >
-          <LineChart width={1800} height={600} data={newdata2020}>
+          <LineChart width={1800} height={600} data={this.state.lineData}>
             <YAxis />
             <XAxis dataKey='state'/>
             <Tooltip position={{y: 200}} />
