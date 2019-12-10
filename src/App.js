@@ -261,7 +261,6 @@ const marks = {
 const stickyContainer = {	
   border: "1px solid black",	
   background: "#F0F0F0",	
-  position: "-webkit-sticky",	
   position: "sticky",	
   float: "left",	
   top: "100px",	
