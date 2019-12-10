@@ -6,18 +6,19 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './data';
 
-const styles = {
+const sliderBar = {
   fontFamily: "sans-serif",
   textAlign: "center",
   paddingTop: "10px",
   align: "center",
   width: "1000px",
-  paddingLeft: "200px"
+  margin: "0 auto",
 };
 
 const legStyle = {
-  paddingTop: "15px",
-  paddingLeft: "550px"
+  width: "300px",
+  margin: "0 auto",
+  paddingTop: "20px"
 };
 
 var politicalColors = [
@@ -1109,7 +1110,7 @@ class App extends Component {
             midColor="rgb(255,75,0)"
           />
         </DonationBar>
-        <div style={styles}>
+        <div style={sliderBar}>
           <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} />
         </div>
       </div>
