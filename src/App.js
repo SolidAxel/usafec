@@ -5,16 +5,7 @@ import { ContinuousColorLegend, RadialChart } from 'react-vis';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './data';
-import {
-
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-
-  Bar,
-  BarChart
-} from "recharts";
+import {XAxis, YAxis, CartesianGrid, Tooltip, Bar, BarChart} from "recharts";
 import data80 from './JSON/1980.json';
 import data82 from './JSON/1982.json';
 import data84 from './JSON/1984.json';
