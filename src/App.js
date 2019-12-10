@@ -14,7 +14,13 @@ const sliderBar = {
   width: "1000px",
   margin: "0 auto",
 };
-
+const ModalStyle = {
+  fontFamily: "sans-serif",
+  textAlign: "center",
+  paddingTop: "10px",
+  align: "center",
+  margin: "0 auto",
+}
 const legStyle = {
   width: "300px",
   margin: "0 auto",
@@ -275,10 +281,10 @@ class App extends Component {
       this.setState({ dataset: myData.data2020 });
   }
 
-  showModal = (stated, name, data) => {
+  showModal = (e,name, data) => {
     this.setState({
+      e: e,
       show: true,
-      e: stated,
       state: name,
       data: data,
     });
@@ -301,7 +307,6 @@ class App extends Component {
 
     this.setState({ percentageOfDon: percentage });
   }
-
   getTotal = (dem, rep) => {
     var total = "The total contributions of this state was $" + (dem + rep).toFixed(2) + ".";
     this.setState({ totalStateDonations: total });
@@ -365,14 +370,14 @@ class App extends Component {
         },
         "NY": {
           fill: getColor(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
-          clickHandler: (e) => this.showModal(e.target.dataset.name, "New York", "Graph will go here",
-            this.getPercentage(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
-            this.getTotal(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
-            this.inStateDistribution(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations)),
+          clickHandler: (e) => this.showModal(e.target.dataset.name,"New York" ,"Graph will go here",
+          this.getPercentage(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
+          this.getTotal(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations),
+          this.inStateDistribution(this.state.dataset.NY.DemDonations, this.state.dataset.NY.RepDonations)),
         },
         "AZ": {
           fill: getColor(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations),
-          clickHandler: (e) => this.showModal(e.target.dataset.name, "Graph will go here",
+          clickHandler: (e) => this.showModal(e.target.dataset.name,"Arizona", "Graph will go here",
             this.getPercentage(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations),
             this.getTotal(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations),
             this.inStateDistribution(this.state.dataset.AZ.DemDonations, this.state.dataset.AZ.RepDonations)),
@@ -1080,18 +1085,6 @@ class App extends Component {
           </h1>
           <h2><button onClick={this.manageButton}>Change Type of Map</button></h2>
           <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
-          <Modal show={this.state.show} handleClose={this.hideModal}>
-            {this.state.state}
-            <div></div>
-            {this.state.funFact}
-            <div></div>
-            {this.state.percentageOfDon}
-            <div></div>
-            {this.state.totalStateDonations}
-            <div></div>
-            {this.state.data}
-            <div></div>
-          </Modal>
         </div>
         <PoliticalBar show={this.state.politicalGraph}>
           <ContinuousColorLegend
@@ -1118,6 +1111,18 @@ class App extends Component {
         <div style={sliderBar}>
           <Slider step={2} min={1980} max={2020} onAfterChange={this.setYear} marks={marks} included={false} />
         </div>
+        <Modal show={this.state.show} handleClose={this.hideModal}>
+            {this.state.state}
+            <div></div>
+            {this.state.funFact}
+            <div></div>
+            {this.state.percentageOfDon}
+            <div></div>
+            {this.state.totalStateDonations}
+            <div></div>
+            {this.state.data}
+            <div></div>
+          </Modal>
       </div>
     );
   }
@@ -1127,7 +1132,7 @@ const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
-    <div className={showHideClassName} >
+    <div className={showHideClassName} style={ModalStyle}>
       <section className='modal-main'>
         {children}
         <button onClick={handleClose}> Close</button>
