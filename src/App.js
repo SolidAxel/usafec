@@ -1198,7 +1198,6 @@ class App extends Component {
 
     return angles;
   }
-
   render() {
     return (
       <div className="mapContainer">
@@ -1244,10 +1243,10 @@ class App extends Component {
           <BarChart width={1200} height={600} style={Graph} data={this.state.lineData} maxBarSize={50} >
             <YAxis tick={<CustomizedYAxisTick />}/>
             <XAxis dataKey='state' tick={<CustomizedXAxisTick />} interval={0}/>
-            <Tooltip position={{ y: 200 }} />
+            <Tooltip formatter={(value) => new Intl.NumberFormat('en', {style: 'currency', currency: 'USD'}).format(value.toFixed(2)) }/>
             <CartesianGrid stroke='#f5f5f5' />
-            <Bar dataKey='rep' stackId="a" fill='red' strokeWidth={2} />
-            <Bar dataKey='dem' stackId="a" fill='blue' strokeWidth={2} />
+            <Bar  dataKey='rep' stackId="a" fill='red' strokeWidth={2} />
+            <Bar  dataKey='dem' stackId="a" fill='blue' strokeWidth={2} />
           </BarChart>
         </div>
       <Modal show={this.state.show} handleClose={this.hideModal}>
